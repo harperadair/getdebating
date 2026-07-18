@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Get Debating</title>
+  <meta name="description" content="Get in touch with Get Debating to enquire about workshops, coaching, or student debate groups for your school." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ HEADER / NAVIGATION ============ -->
+  <header class="site-header">
+    <nav class="nav wrap">
+      <a href="index.html" class="nav-logo">Get<span>Debating</span></a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programmes.html">What We Offer</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li><a href="contact.html" class="btn btn--primary btn--small">Make an enquiry</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="motion-tag">Contact</span>
+        <h1>Tell us what your school or group needs.</h1>
+        <p class="lede">
+          Whether it's a single workshop or a full year of coaching, we'll
+          help you find the right fit. Fill in the form below, or email us
+          directly at <a href="mailto:info@getdebating.ie">info@getdebating.ie</a>.
+        </p>
+        <nav class="audience-routing" aria-label="Quick contact by audience">
+          <a href="mailto:info@getdebating.ie?subject=School%20enquiry">Teacher or principal</a>
+          <a href="mailto:info@getdebating.ie?subject=Parent%2Fstudent%20enquiry">Parent or student</a>
+          <a href="mailto:info@getdebating.ie?subject=Volunteering">Become a coach</a>
+          <a href="mailto:info@getdebating.ie?subject=Partnership%2Fsupport">Partner or support us</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap grid grid--2" style="align-items: start;">
+
+        <!-- ============ ENQUIRY FORM ============ -->
+        <div>
+          <div class="section-head">
+            <span class="motion-tag">Make an enquiry</span>
+            <h2>Send us a message</h2>
+          </div>
+
+          <form id="enquiry-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+            <!-- Replace with a real key from https://web3forms.com — free tier, 250 submissions/month -->
+            <input type="hidden" name="access_key" value="[WEB3FORMS-ACCESS-KEY]" />
+            <input type="hidden" name="subject" value="New enquiry — Get Debating website" />
+            <input type="hidden" name="from_name" value="Get Debating website" />
+
+            <!-- Honeypot spam trap: left blank by humans, filled in by bots -->
+            <div class="honeypot-field" aria-hidden="true">
+              <label for="hp-field">Leave this field blank</label>
+              <input type="text" id="hp-field" name="botcheck" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-field">
+              <label for="school">School / organisation</label>
+              <input type="text" id="school" name="school" />
+            </div>
+
+            <div class="form-field">
+              <label for="role">Role</label>
+              <select id="role" name="role">
+                <option value="">Select one</option>
+                <option value="teacher">Teacher</option>
+                <option value="parent">Parent</option>
+                <option value="student">Student</option>
+                <option value="school-leader">School leader</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="interest">I'm interested in</label>
+              <select id="interest" name="interest">
+                <option value="">Select one</option>
+                <option value="in-school-workshop">In-school workshop</option>
+                <option value="long-term-coaching">Long-term coaching</option>
+                <option value="debate-group">Student debate group</option>
+                <option value="event">Event enquiry</option>
+                <option value="general">General question</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary">Send enquiry</button>
+
+            <p style="font-size: 0.88rem; color: var(--ink-soft); margin-top: var(--space-2);">
+              We'll only use these details to reply to your enquiry — see our
+              <a href="privacy.html">privacy policy</a>. If the form doesn't
+              work for you, email
+              <a href="mailto:info@getdebating.ie">info@getdebating.ie</a> directly.
+            </p>
+
+            <p id="form-note" class="form-note" role="status"></p>
+          </form>
+        </div>
+
+        <!-- ============ WHAT TO INCLUDE ============ -->
+        <div>
+          <div class="card">
+            <span class="card-eyebrow">Helpful to know</span>
+            <h3>What to include in your enquiry</h3>
+            <p>To help us reply with something useful, it's helpful to include:</p>
+            <ul>
+              <li>Your school or group's name</li>
+              <li>The age or year group of the students involved</li>
+              <li>Roughly how many students would take part</li>
+              <li>What you're looking for — a single workshop, ongoing coaching, or something else</li>
+            </ul>
+            <p>Don't worry if you don't have all of this yet — a rough idea is enough to get started.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <h4>Get Debating</h4>
+          <p>A not-for-profit voluntary organisation bringing debating skills to Dublin secondary schools. We are not currently registered with the Charities Regulator.</p>
+          <p class="placeholder-note">[REGISTERED ADDRESS — insert once confirmed]</p>
+        </div>
+        <div>
+          <h4>Site</h4>
+          <ul>
+            <li><a href="about.html">About &amp; our team</a></li>
+            <li><a href="programmes.html">For schools</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Trust &amp; safety</h4>
+          <ul>
+            <li><a href="safeguarding.html">Safeguarding &amp; child protection</a></li>
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="mailto:info@getdebating.ie">info@getdebating.ie</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <span>© 2026 Get Debating, Dublin. Not-for-profit voluntary organisation.</span>
+        <span><a href="contact.html">info@getdebating.ie</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

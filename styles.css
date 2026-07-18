@@ -1,0 +1,858 @@
+/* =========================================================
+   GET DEBATING — SHARED STYLESHEET
+   -------------------------------------------------------
+   This file is used by every page on the site. It's split
+   into sections (use Ctrl+F / Cmd+F to jump around):
+
+   1. Design tokens (colours, fonts, spacing)
+   2. Reset & base styles
+   3. Layout helpers
+   4. Navigation
+   5. Buttons
+   6. Motion tag (the little label used above section titles)
+   7. Hero
+   8. Cards & sections
+   9. Tables
+   10. Forms
+   11. Footer
+   12. Responsive (mobile) rules
+   ========================================================= */
+
+/* -----------------------------------------------------------
+   1. DESIGN TOKENS
+   These are variables — set a colour or font once here, and
+   it updates everywhere on the site that uses it.
+----------------------------------------------------------- */
+:root {
+  /* Colours */
+  --navy: #16233f;        /* deep navy — headings, nav, footer */
+  --navy-soft: #29365a;   /* slightly lighter navy — secondary text on dark */
+  --blue: #3b62e0;        /* bright/medium blue — links, buttons, accents */
+  --blue-tint: #eef1f7;   /* pale blue-gray — soft section backgrounds */
+  --white: #ffffff;
+  --bg: #ffffff;          /* main page background */
+  --ink: #1c2333;         /* near-black — body text */
+  --ink-soft: #4a5268;    /* muted body text */
+  --border: #dfe2ea;      /* hairline borders */
+  --border-dark: rgba(255, 255, 255, 0.16);
+
+  /* Type */
+  --font-display: ui-serif, Charter, "Iowan Old Style", "Palatino Linotype", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-body);
+
+  /* Paper texture (subtle, used sparingly on tinted sections) */
+  --paper-texture: repeating-linear-gradient(
+    0deg,
+    rgba(22, 35, 63, 0.015),
+    rgba(22, 35, 63, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+
+  /* Spacing scale */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+
+  /* Layout */
+  --max-width: 1120px;
+  --radius: 10px;
+}
+
+/* -----------------------------------------------------------
+   2. RESET & BASE STYLES
+----------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-body);
+  color: var(--navy);
+  line-height: 1.2;
+  margin: 0 0 var(--space-2);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+}
+h2 { font-size: clamp(1.5rem, 3vw, 2.05rem); font-weight: 700; }
+h3 { font-size: 1.2rem; font-weight: 700; }
+
+p { margin: 0 0 var(--space-2); }
+
+ul, ol { padding-left: 1.25rem; }
+li { margin-bottom: 0.4rem; }
+
+/* Visible keyboard focus everywhere — accessibility floor */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* -----------------------------------------------------------
+   3. LAYOUT HELPERS
+----------------------------------------------------------- */
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+.section {
+  padding: var(--space-6) 0;
+}
+
+.section--tight {
+  padding: var(--space-5) 0;
+}
+
+.section--navy {
+  background: var(--navy);
+  color: #cfd6ea;
+}
+
+.section--navy h2,
+.section--navy h3 {
+  color: var(--white);
+}
+
+.section--tint {
+  background: var(--blue-tint);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+.center { text-align: center; }
+
+.lede {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.section--navy .lede { color: #b9c3de; }
+
+/* -----------------------------------------------------------
+   4. NAVIGATION
+----------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 0;
+}
+
+.nav-logo {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--navy);
+}
+
+.nav-logo:hover { text-decoration: none; }
+
+.nav-logo span {
+  color: var(--blue);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--navy);
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+
+.nav-links a:hover {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--blue);
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 2px;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--navy);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.1rem;
+  color: var(--navy);
+  cursor: pointer;
+}
+
+/* -----------------------------------------------------------
+   5. BUTTONS
+----------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+}
+
+.btn:hover { text-decoration: none; }
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn--primary:hover {
+  background: #2e51c4;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.btn--ghost:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.btn--on-navy {
+  background: var(--white);
+  color: var(--navy);
+}
+
+.btn--on-navy:hover {
+  background: var(--blue-tint);
+}
+
+.btn--small {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* -----------------------------------------------------------
+   6. MOTION TAG
+   A small label above section titles.
+----------------------------------------------------------- */
+.motion-tag {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: var(--space-1);
+}
+
+.section--navy .motion-tag {
+  color: #9fb2ec;
+}
+
+.card-eyebrow {
+  font-family: var(--font-body);
+}
+
+/* -----------------------------------------------------------
+   7. HERO
+----------------------------------------------------------- */
+.hero {
+  padding: var(--space-6) 0 var(--space-5);
+  background: var(--blue-tint);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.hero h1 {
+  margin-bottom: var(--space-2);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: var(--space-3);
+}
+
+.hero-panel {
+  background: transparent;
+  color: var(--ink);
+  border-left: 3px solid var(--blue);
+  padding: 0 0 0 var(--space-3);
+}
+
+.hero-panel .motion-tag {
+  color: var(--blue);
+}
+
+.hero-panel p {
+  color: var(--ink-soft);
+}
+
+.page-hero {
+  background: var(--navy);
+  color: var(--white);
+  padding: var(--space-5) 0 var(--space-4);
+}
+
+.page-hero h1 { color: var(--white); }
+.page-hero .lede { color: #b9c3de; }
+
+/* -----------------------------------------------------------
+   8. CARDS & SECTIONS
+----------------------------------------------------------- */
+.card {
+  background: transparent;
+  border-top: 2px solid var(--border);
+  padding: var(--space-2) 0 0;
+  height: 100%;
+}
+
+.card h3 {
+  margin-bottom: 0.6rem;
+}
+
+.card-eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.section-head {
+  max-width: 62ch;
+  margin-bottom: var(--space-4);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--space-5) 0 0;
+}
+
+/* -----------------------------------------------------------
+   9. TABLES
+----------------------------------------------------------- */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+thead th {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--blue-tint);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* -----------------------------------------------------------
+   10. FORMS
+----------------------------------------------------------- */
+.form-field {
+  margin-bottom: var(--space-3);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.form-note {
+  padding: var(--space-2) 0 0;
+  border-top: 2px solid var(--blue);
+  color: var(--navy);
+  margin-top: var(--space-2);
+  display: none;
+}
+
+.form-note.is-visible {
+  display: block;
+}
+
+/* -----------------------------------------------------------
+   11. FOOTER
+----------------------------------------------------------- */
+.site-footer {
+  background: var(--navy);
+  color: #aeb8d4;
+  padding: var(--space-5) 0 var(--space-4);
+  font-size: 0.9rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-dark);
+  margin-bottom: var(--space-3);
+}
+
+.footer-top h4 {
+  color: var(--white);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  margin-bottom: 0.6rem;
+}
+
+.footer-top p, .footer-top li {
+  color: #aeb8d4;
+  margin-bottom: 0.4rem;
+}
+
+.footer-top ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.site-footer a {
+  color: #d9e0f2;
+}
+
+@media (max-width: 720px) {
+  .footer-top { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+
+/* -----------------------------------------------------------
+   12. RESPONSIVE (MOBILE) RULES
+----------------------------------------------------------- */
+/* -----------------------------------------------------------
+   13. SKIP LINK
+----------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  z-index: 100;
+  background: var(--navy);
+  color: var(--white);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 8px 0;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+.skip-link:focus {
+  left: 0;
+  top: 0;
+}
+
+/* -----------------------------------------------------------
+   14. AUDIENCE ROUTING
+----------------------------------------------------------- */
+.audience-routing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.audience-routing a {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--navy);
+  border-bottom: 2px solid var(--border);
+  padding: 0.1rem 0;
+}
+
+.audience-routing a:hover {
+  border-bottom-color: var(--blue);
+  color: var(--blue);
+  text-decoration: none;
+}
+
+/* -----------------------------------------------------------
+   15. TESTIMONIALS / PULL-QUOTES (debate-motion motif)
+----------------------------------------------------------- */
+.pull-quote {
+  border-left: 3px solid var(--blue);
+  padding: 0 0 0 var(--space-3);
+  margin: 0;
+}
+
+.pull-quote .motion-tag {
+  color: var(--blue);
+}
+
+.pull-quote blockquote {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.5;
+}
+
+.pull-quote cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.pull-quote cite strong {
+  color: var(--navy);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.placeholder-note {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  display: inline-block;
+}
+
+.section--navy .placeholder-note {
+  color: #b9c3de;
+}
+
+/* -----------------------------------------------------------
+   16. TEAM BIOS
+----------------------------------------------------------- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.team-card {
+  background: transparent;
+  overflow: hidden;
+}
+
+.team-photo {
+  aspect-ratio: 4 / 5;
+  background: var(--blue-tint);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: var(--space-2);
+}
+
+.team-card .team-body {
+  padding: var(--space-3);
+}
+
+.team-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+}
+
+.team-role {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--blue);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* -----------------------------------------------------------
+   17. FAQ ACCORDION
+----------------------------------------------------------- */
+.faq {
+  border-top: 1px solid var(--border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  padding: var(--space-2) 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 1.05rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: var(--blue);
+  flex-shrink: 0;
+}
+
+.faq-item[open] summary::after {
+  content: "\2212";
+}
+
+.faq-item p {
+  padding-bottom: var(--space-2);
+  color: var(--ink-soft);
+  max-width: 68ch;
+}
+
+/* -----------------------------------------------------------
+   18. INFO / LOGISTICS BLOCKS (For Schools content)
+----------------------------------------------------------- */
+.info-block {
+  border-top: 1px solid var(--border);
+  padding: var(--space-3) 0;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--space-3);
+}
+
+.info-block:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.info-block dt {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.info-block dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+.safeguarding-callout {
+  background: var(--blue-tint);
+  color: var(--ink);
+  border-left: 4px solid var(--blue);
+  padding: var(--space-4);
+}
+
+.safeguarding-callout h3 {
+  color: var(--navy);
+}
+
+.safeguarding-callout p {
+  color: var(--ink-soft);
+}
+
+/* -----------------------------------------------------------
+   19. POLICY PAGES
+----------------------------------------------------------- */
+.policy-content h2 {
+  margin-top: var(--space-5);
+}
+
+.policy-content h2:first-child {
+  margin-top: 0;
+}
+
+.policy-content p, .policy-content li {
+  color: var(--ink-soft);
+  max-width: 70ch;
+}
+
+/* -----------------------------------------------------------
+   20. TEXTURE + ASYMMETRY UTILITIES
+----------------------------------------------------------- */
+.section--tint {
+  background-image: var(--paper-texture);
+}
+
+.section-head--offset {
+  margin-left: 0;
+}
+
+@media (min-width: 861px) {
+  .section-head--offset {
+    max-width: 54ch;
+    margin-left: 8%;
+  }
+}
+
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .grid--3 { grid-template-columns: 1fr 1fr; }
+  .info-block { grid-template-columns: 1fr; gap: 0.4rem; }
+}
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: var(--space-2) var(--space-3) var(--space-3);
+    display: none;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links a {
+    display: block;
+  }
+
+  .grid--3, .grid--2 { grid-template-columns: 1fr; }
+}
