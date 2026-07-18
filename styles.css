@@ -1,5 +1,5 @@
 /* =========================================================
-   GET DEBATING — SHARED STYLESHEET
+   GET DEBATING â€” SHARED STYLESHEET
    -------------------------------------------------------
    This file is used by every page on the site. It's split
    into sections (use Ctrl+F / Cmd+F to jump around):
@@ -20,18 +20,18 @@
 
 /* -----------------------------------------------------------
    1. DESIGN TOKENS
-   These are variables — set a colour or font once here, and
+   These are variables â€” set a colour or font once here, and
    it updates everywhere on the site that uses it.
 ----------------------------------------------------------- */
 :root {
   /* Colours */
-  --navy: #16233f;        /* deep navy — headings, nav, footer */
-  --navy-soft: #29365a;   /* slightly lighter navy — secondary text on dark */
-  --blue: #3b62e0;        /* bright/medium blue — links, buttons, accents */
-  --blue-tint: #eef1f7;   /* pale blue-gray — soft section backgrounds */
+  --navy: #16233f;        /* deep navy â€” headings, nav, footer */
+  --navy-soft: #29365a;   /* slightly lighter navy â€” secondary text on dark */
+  --blue: #3b62e0;        /* bright/medium blue â€” links, buttons, accents */
+  --blue-tint: #eef1f7;   /* pale blue-gray â€” soft section backgrounds */
   --white: #ffffff;
   --bg: #ffffff;          /* main page background */
-  --ink: #1c2333;         /* near-black — body text */
+  --ink: #1c2333;         /* near-black â€” body text */
   --ink-soft: #4a5268;    /* muted body text */
   --border: #dfe2ea;      /* hairline borders */
   --border-dark: rgba(255, 255, 255, 0.16);
@@ -118,7 +118,7 @@ p { margin: 0 0 var(--space-2); }
 ul, ol { padding-left: 1.25rem; }
 li { margin-bottom: 0.4rem; }
 
-/* Visible keyboard focus everywhere — accessibility floor */
+/* Visible keyboard focus everywhere â€” accessibility floor */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -662,6 +662,14 @@ textarea {
   font-size: 0.8rem;
   text-align: center;
   padding: var(--space-2);
+  overflow: hidden;
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
 }
 
 .team-card .team-body {
